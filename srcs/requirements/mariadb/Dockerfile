@@ -4,6 +4,10 @@ RUN apt-get update \
 RUN mkdir /run/mysqld \
     && chown mysql:mysql /run/mysqld && chmod 755 /run/mysqld 
 
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT [ "docker-entrypoint.sh" ]
+
 STOPSIGNAL SIGQUIT
-ENTRYPOINT [ "" ]
+
 CMD [ "mariadbd", "--gdb" ]
