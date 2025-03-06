@@ -26,3 +26,5 @@ if [ ! -d /var/lib/mysql/mysql ]; then
 	echo 'FLUSH PRIVILEGES;' >> "$TEMP_FILE"
 	set -- "$@" --init-file="$TEMP_FILE"
 fi
+
+exec "$@"
