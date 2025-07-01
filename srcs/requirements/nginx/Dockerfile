@@ -9,7 +9,7 @@ RUN mkdir -p /etc/nginx/ssl \
     -newkey rsa:2048 \
     -keyout /etc/nginx/ssl/server.key \
     -out /etc/nginx/ssl/server.crt \
-    -subj "/C=JP/ST=Tokyo/L=Kawasaki/O=42/OU=Dev/CN=yourlogin.42.fr"
+    -subj "/C=JP/ST=Tokyo/L=Kawasaki/O=42/OU=Dev/CN=nsakanou.42.fr"
     
 # NGINX 設定ファイルをコピー
 COPY default.conf /etc/nginx/conf.d/default.conf

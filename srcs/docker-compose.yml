@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+    networks:
+      - wpnet
+    restart: always
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    volumes:
+      - wp_files:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_USER=wpuser
+      - WORDPRESS_DB_PASSWORD=wppassword
+    networks:
+      - wpnet
+    restart: always
+
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - wp_files:/var/www/html:ro
+    depends_on:
+      - wordpress
+    networks:
+      - wpnet
+    restart: always
+
+volumes:
+  db_data:
+  wp_files:
+
+networks:
+  wpnet:
+    driver: bridge
