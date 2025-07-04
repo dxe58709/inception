@@ -1,0 +1,19 @@
+# Secrets
+secrets/*.txt
+
+# Local volume data
+data/
+!data/www/.keep
+!data/mariadb/.keep
+!data/ssl/.keep
+
+# System & editor files
+*.log
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# WordPress cache/temp
+srcs/requirements/wordpress/wp-content/cache/
+srcs/requirements/wordpress/wp-content/uploads/
