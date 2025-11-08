@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 RUN apt-get update \
     && apt-get -y install mariadb-server mariadb-client
 RUN mkdir /run/mysqld \
